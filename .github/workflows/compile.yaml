@@ -1,0 +1,22 @@
+name: PersonalWorkflow
+
+on:
+  push:  # Esegui il workflow su ogni push, indipendentemente dal branch
+
+jobs:
+  basic-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Git Repository
+        uses: actions/checkout@v4
+
+      - name: List files in workspace
+        run: ls -l
+
+      - name: Install GCC and G++
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential  # installa gcc, g++, make...
+
+      - name: Compile C++ file
+        run: g++ file.cpp -o program
