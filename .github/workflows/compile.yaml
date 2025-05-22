@@ -10,9 +10,6 @@ jobs:
       - name: Clone Git Repository
         uses: actions/checkout@v4
 
-      - name: List files in workspace
-        run: ls -l
-
       - name: Install GCC and G++
         run: |
           sudo apt update
@@ -20,3 +17,11 @@ jobs:
 
       - name: Compile C++ file
         run: g++ file.cpp -o program
+
+  build:
+    name: Build the project
+    runs-on: ubuntu-latest
+    needs: basic-job  # Questo job dipende da "basic-job"
+    steps:
+      - name: List files
+        run: ls -l
